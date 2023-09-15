@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Brain2Music: Reconstructing Music from Human Brain Activity">
-  <meta name="keywords" content="Music, AI, Google Research, Osaka University">
+  <meta name="keywords" content="Music, AI">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     td {
@@ -111,13 +111,8 @@
       <div class="text-center">
         <h1 class="mb-3">Brain2Music: Reconstructing Music from Human Brain Activity</h1>
         <p class="fst-italic mb-2">
-          Timo I. Denk<sup>∗1</sup>&emsp;Yu Takagi<sup>∗2,3</sup><br>Takuya Matsuyama<sup>2</sup>&emsp;Andrea
-          Agostinelli<sup>1</sup>&emsp;Tomoya Nakai<sup>4</sup><br>Christian Frank<sup>1</sup>&emsp;Shinji
-          Nishimoto<sup>2,3</sup>
+          <i>Authors anonymized</i>
         </p>
-        <p class="fst-italic mb-5"><sup>1</sup>Google&emsp;<sup>2</sup>Osaka
-          University,
-          Japan&emsp;<sup>3</sup>NICT, Japan&emsp;<sup>4</sup>Araya Inc., Japan</p>
       </div>
       <div class="abstract-wrapper">
         <p>
@@ -131,11 +126,6 @@
           of MusicLM and brain activity through a voxel-wise encoding modeling analysis. Furthermore, we discuss which
           brain regions represent information derived from purely textual descriptions of music stimuli.
         </p>
-        <b>Please find the full paper on <a href="https://arxiv.org/abs/2307.11078">arXiv</a></b>
-        </p>
-        <p class="fst-italic font-size-small"><sup>*</sup>Equal contribution; correspondence to timodenk@google.com and
-          takagi.yuu.fbs@osaka-u.ac.jp</p>
-        <p>
       </div>
     </section>
 
@@ -887,7 +877,9 @@
       <h3>GTZAN Music Captions</h3>
 
       <div>
-        <p>We <a href="https://www.kaggle.com/datasets/nishimotolab/music-caption-brain2music/">release a music caption dataset</a> for the subset of GTZAN clips for which there are fMRI scans. Below are ten examples from the dataset.</p>
+        <p>We <a href="caption-dataset.csv">release a music caption dataset</a> for the subset of GTZAN clips for which
+          there
+          are fMRI scans. Below are ten examples from the dataset.</p>
       </div>
 
       <div>
@@ -997,113 +989,6 @@
           </tbody>
         </table>
       </div>
-    </section>
-
-    <section class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
-      <h3>FAQ</h3>
-
-      <h4>General</h4>
-
-      <div class="q-a-wrapper">
-        <p>Could you describe your paper briefly?</p>
-        <p>
-          In this paper, we explore the relationship between the observed human brain activity when human subjects are
-          listening to music and the <a href="https://blog.google/technology/ai/musiclm-google-ai-test-kitchen/">Google MusicLM</a> music generation model that can create music from a text
-          description. As part of this study we observe that
-        <ul>
-          <li>When a human and MusicLM are exposed to the same music, the internal representations of MusicLM are
-            correlated with brain activity in certain regions.</li>
-          <li>When we use data from such regions as an input for MusicLM, we can predict and reconstruct the kinds of
-            music which the human subject was exposed to.</li>
-        </ul>
-        </p>
-      </div>
-
-      <div class="q-a-wrapper">
-        <p>Are there studies of brain decoding and encoding for music, or more generally for sound processing? What is
-          new about this study?</p>
-        <p>Previous studies have also examined the human brain activity while participants listened to music and
-          discovered musical feature representations in the brain. Given the recently published music generation models
-          such as MusicLM, it is now possible to study whether human brain activity can be converted into music with
-          such models.</p>
-      </div>
-
-      <h4>Methods</h4>
-
-      <div class="q-a-wrapper">
-        <p>What is MusicLM?</p>
-        <p>MusicLM is a type of language model that was trained on music and can be used to create music given a text
-          describing the desired music or other inputs such as a hummed melody together with some text describing the style of the
-          desired music. It is based on a generic framework called AudioLM, which uses language models to generate audio
-          at high fidelity. You can try out MusicLM in <a
-            href="https://aitestkitchen.withgoogle.com/experiments/music-lm">Google Labs</a>.</p>
-      </div>
-
-      <div class="q-a-wrapper">
-        <p>What brain data did you use?</p>
-        <p>We used functional magnetic resonance imaging (fMRI). This technique is detecting changes associated with
-          blood flow and relies on the fact that cerebral blood flow and neuronal activation are connected. That is, it
-          looks for indicators of changed blood flow and uses those to measure brain activity in the regions of
-          interest.</p>
-      </div>
-
-      <h4>Limitations</h4>
-
-      <div class="q-a-wrapper">
-        <p>There are three main factors that are currently limiting the quality of the reconstructed music when
-          observing human brain signals:
-
-        <ul>
-          <li>the information contained in the fMRI data is very temporally and spatially sparse (the observed regions
-            are 2×2×2mm<sup>3</sup> in size, many orders of magnitude larger than human neurons).</li>
-          <li>the information contained in the music embeddings from which we reconstruct the music (we used MuLan, in
-            which ten seconds of music are represented by just 128 numbers). </li>
-          <li>the limitations of our music generation system. When we studied <a
-              href="https://arxiv.org/abs/2301.11325">MusicLM</a>, we saw that it has room to improve both in the way it
-            adheres to the text prompt and in terms of the fidelity of the produced audio.</li>
-        </ul>
-
-        Taken together, the reconstructed music is not always close to what the subjects actually observed when the
-        brain scan was done.
-        </p>
-      </div>
-
-      <div class="q-a-wrapper">
-        <p>Could the model be transferred to a novel subject?</p>
-        <p>Because the brain’s anatomy differs from one person to the next, it is not possible to directly apply a model
-          created for one individual to another. Several methods have been proposed to compensate for these
-          differences, and it would be possible to use such methods to transfer models across subjects with a certain
-          degree of accuracy.
-        </p>
-      </div>
-
-      <div class="q-a-wrapper">
-        <p>What are the ethical/privacy issues that stem from this study?</p>
-        <p>Note that the decoding technology described in this paper is unlikely to become practical in the near future.
-          In particular, reading fMRI signals from the brain requires a volunteer to spend many hours in a large fMRI
-          scanner. While there are no immediate privacy implications from the technology as described here, as with this
-          study, any such analysis must only be performed with the informed consent of the studied individuals.</p>
-      </div>
-
-      <h4>Outlook</h4>
-
-      <div class="q-a-wrapper">
-        <p>What are the future directions?</p>
-        <p>Note that in this work, we perform music reconstruction from fMRI signals that were recorded while human
-          subjects were listening to music stimuli through headphones. More sophisticated technology to examine the
-          human brain will further advance the research in this area and the model’s capability to generate music
-          matching the heard stimulus. An exciting next step is to attempt the reconstruction of music or musical
-          attributes from a person’s imagination.</p>
-      </div>
-
-      <div class="q-a-wrapper">
-        <p>What are the potential applications?</p>
-        <p>With the amount of work required to obtain fMRI signals from the brain, we do not have direct applications in
-          mind. This work has been motivated by a fundamental research question: Does the MusicLM music generation model
-          contain components that are mirrored in the human brain, and if so, which are those? And if such connections
-          exist, how would music sound like that is inspired by signals from the human brain?</p>
-      </div>
-
     </section>
 
   </main>
